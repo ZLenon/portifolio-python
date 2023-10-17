@@ -1,5 +1,23 @@
-from django.contrib import admin
-from projects.models import Project, Profile
+from django.contrib import admin as adm
+from projects.models import (
+    Profile,
+    Project,
+    Certificate,
+    CertifyingInstitution,
+)
 
-admin.site.register(Profile)
-admin.site.register(Project)
+adm_site = adm.site
+
+
+class CertificateInline(adm.StackedInline):
+    model = Certificate
+
+
+class CertifyingInstitutionAdmin(adm.ModelAdmin):
+    inlines = [CertificateInline]
+
+
+adm_site.register(Profile)
+adm_site.register(Project)
+adm_site.register(CertifyingInstitution, CertifyingInstitutionAdmin)
+adm_site.register(Certificate)
