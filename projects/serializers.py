@@ -1,14 +1,16 @@
 from rest_framework import serializers
 from projects.models import Profile, Project
 
+srms = serializers.ModelSerializer
 
-class ProfileSerializer(serializers.ModelSerializer):
+
+class ProfileSerializer(srms):
     class Meta:
         model = Profile
         fields = ("id", "name", "github", "linkedin", "bio")
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectSerializer(srms):
     class Meta:
         model = Project
         fields = (

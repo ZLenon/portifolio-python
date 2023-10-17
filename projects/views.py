@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from projects.models import Profile, Project
-from .serializers import ProfileSerializer, ProjectSerializer
+from projects.serializers import ProfileSerializer, ProjectSerializer
 
 set_view = viewsets.ModelViewSet
 
