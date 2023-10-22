@@ -7,15 +7,6 @@ from projects.models import (
 )
 
 srms = serializers.ModelSerializer
-all_fields = [
-    "id",
-    "name",
-    "description",
-    "github_url",
-    "keyword",
-    "key_skill",
-    "profile",
-]
 
 
 class ProfileSerializer(srms):
@@ -27,13 +18,13 @@ class ProfileSerializer(srms):
 class ProjectSerializer(srms):
     class Meta:
         model = Project
-        fields = all_fields
+        fields = "__all__"
 
 
 class CertificateSerializer(srms):
     class Meta:
         model = Certificate
-        fields = all_fields
+        fields = "__all__"
 
 
 class NestedCertificatesSerializer(srms):
