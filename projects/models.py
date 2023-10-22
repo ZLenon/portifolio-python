@@ -6,7 +6,7 @@ dj_model = models.Model
 
 
 class Profile(dj_model):
-    name = models.CharField(max_length=500)
+    name = models.CharField(max_length=60)
     github = models.URLField(max_length=500)
     linkedin = models.URLField(max_length=500)
     bio = models.TextField(
@@ -18,7 +18,7 @@ class Profile(dj_model):
 
 
 class Project(dj_model):
-    name = models.CharField(max_length=500)
+    name = models.CharField(max_length=60)
     keyword = models.CharField(max_length=500)
     github_url = models.URLField(max_length=500)
     key_skill = models.CharField(max_length=500)
@@ -30,7 +30,7 @@ class Project(dj_model):
 
 
 class CertifyingInstitution(dj_model):
-    name = models.CharField(max_length=500, validators=[mlgv(limit_value=90)])
+    name = models.CharField(max_length=60, validators=[mlgv(limit_value=90)])
     url = models.URLField(validators=[URLValidator()])
 
     def __str__(self):
@@ -38,7 +38,7 @@ class CertifyingInstitution(dj_model):
 
 
 class Certificate(dj_model):
-    name = models.CharField(max_length=500, validators=[mlgv(limit_value=90)])
+    name = models.CharField(max_length=60, validators=[mlgv(limit_value=90)])
     profiles = models.ManyToManyField("Profile", related_name="certificates")
     timestamp = models.DateTimeField(auto_now_add=True)
     certifying_institution = models.ForeignKey(

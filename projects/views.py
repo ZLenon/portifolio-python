@@ -1,18 +1,18 @@
 from rest_framework import viewsets
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from django.shortcuts import render
-from projects.models import (
+from .models import (
     Profile,
     Project,
     Certificate,
     CertifyingInstitution,
 )
-from projects.serializers import (
+from .serializers import (
     ProfileSerializer,
     ProjectSerializer,
     CertificateSerializer,
     CertifyingInstitutionSerializer,
 )
-from rest_framework.permissions import AllowAny, IsAuthenticated
 
 
 set_view = viewsets.ModelViewSet
