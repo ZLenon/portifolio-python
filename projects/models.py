@@ -7,8 +7,8 @@ dj_model = models.Model
 
 class Profile(dj_model):
     name = models.CharField(max_length=60)
-    github = models.URLField(max_length=500)
-    linkedin = models.URLField(max_length=500)
+    github = models.URLField()
+    linkedin = models.URLField()
     bio = models.TextField(
         validators=[mlgv(limit_value=500)],
     )
@@ -19,9 +19,9 @@ class Profile(dj_model):
 
 class Project(dj_model):
     name = models.CharField(max_length=60)
-    keyword = models.CharField(max_length=500)
-    github_url = models.URLField(max_length=500)
-    key_skill = models.CharField(max_length=500)
+    keyword = models.CharField(max_length=60)
+    github_url = models.URLField()
+    key_skill = models.CharField(max_length=60)
     description = models.TextField(max_length=500)
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
 

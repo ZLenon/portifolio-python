@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from .models import (
+from projects.models import (
     Profile,
     Project,
     Certificate,
     CertifyingInstitution,
 )
-from .serializers import (
+from projects.serializers import (
     ProfileSerializer,
     ProjectSerializer,
     CertificateSerializer,
@@ -34,22 +34,26 @@ class ProjectViewSet(set_view):
             return [AllowAny()]
         return [IsAuthenticated()]
 
-    def retrieve(self, request, *args, **kwargs):
-        if self.request.method == "GET":
-            # busque o id do perfil
-            kwargs.get("pk")
-            # crie uma variável para guardar esse perfil
-            profile = self.get_object()
-            context = {"profile": profile}
-            return render(
-                # passe os parâmetros necessários para o template:
-                request,
-                "profile_detail.html",
-                context
-                # a requisição, o caminho do template
-                # e um dict com dados para o template
-            )
-        return super().retrieve(request, *args, **kwargs)
+        def retrieve(self, request, *args, **kwargs):
+            if self.request.method == "GET":
+                # busque o id do perfil
+                kwargs.get("pk")
+                # crie uma variável para guardar esse perfil
+                profile = self.get_object()
+                context = {"profile": profile}
+                return render(
+                    # passe os parâmetros necessários para o template:
+                    request,
+                    "profile_detail.html",
+                    context
+                    # a requisição, o caminho do template
+                    # e um dict com dados para o template
+                )
+            return super().retrieve(request, *args, **kwargs)
+
+        class ProjectViewSet(set_view):
+            queryset = Project.objects.all()
+            serializer_class = ProjectSerializer
 
 
 class CertifyingInstitutionViewSet(set_view):
