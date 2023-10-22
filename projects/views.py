@@ -1,6 +1,6 @@
+from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
-from django.shortcuts import render
 from .models import (
     Profile,
     Project,
@@ -35,7 +35,7 @@ class ProjectViewSet(set_view):
         return [IsAuthenticated()]
 
     def retrieve(self, request, *args, **kwargs):
-        if request.method == "GET":
+        if self.request.method == "GET":
             # busque o id do perfil
             kwargs.get("pk")
             # crie uma variável para guardar esse perfil
