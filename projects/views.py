@@ -51,10 +51,6 @@ class ProjectViewSet(set_view):
             )
         return super().retrieve(request, *args, **kwargs)
 
-    class ProjectViewSet(set_view):
-        queryset = Project.objects.all()
-        serializer_class = ProjectSerializer
-
 
 class CertifyingInstitutionViewSet(set_view):
     queryset = CertifyingInstitution.objects.all()
