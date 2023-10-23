@@ -30,7 +30,9 @@ class ProfileViewSet(set_view):
         return [IsAuthenticated()]
 
     def retrieve(self, request, *args, **kwargs):
-        if self.request.method == "GET":
+        if self.request.method != "GET":
+            return super().retrieve(request, *args, **kwargs)
+        else:
             # busque o id do perfil
             kwargs.get("pk")
             # crie uma variável para guardar esse perfil
@@ -43,8 +45,6 @@ class ProfileViewSet(set_view):
                 {"profile": x},
                 # e um dict com dados para o template
             )
-        else:
-            return super().retrieve(request, *args, **kwargs)
 
 
 class ProjectViewSet(set_view):
