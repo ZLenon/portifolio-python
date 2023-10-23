@@ -8,39 +8,29 @@
 </head>
 
 <body>
-  <header>
-    <h2>{{ profile.name }}</h2>
-    <div>GitHub: {{ profile.github }}</div>
-    <div>LinkedIn: {{ profile.linkedin }}</div>
-    <div>Bio: {{ profile.bio }}</div>
-  </header>
-
-  <h3>Projetos</h3>
+  <h1>Nome: {{ profile.name }}</h1>
+  <p>Github: {{ profile.github }}</p>
+  <p>Linkedin: {{ profile.linkedin }}</p>
+  <p>Bio: {{ profile.bio }}</p>
   <ul>
-    {% for x in profile.projects.all %}
-    <li>{{ x.name }}</li>
-    <li>Description: {{ x.description }}</li>
-    <li>Github URL: {{ x.github_url }}</li>
-    <li>Keyword: {{ x.keyword }}</li>
-    <li>Key Skill: {{ x.key_skill }}</li>
+    <h3>Projetos</h3>
+    {% for project in projects %}
+    <li>
+      <p>Projeto: {{ project.name }}</p>
+      <p>Keyword do projeto: {{ project.keyword }}</p>
+      <p>Key Skill do projeto: {{ project.key_skill }}</p>
+    </li>
     {% endfor %}
   </ul>
-
-  <h3>Certificados</h3>
   <ul>
-    {% for x in profile.certificates.all %}
-    <li>{{ x.name }} ({{ x.certifying_institution.name }})</li>
+    <h3>Certificações</h3>
+    {% for certificate in certificates %}
+    <li>
+      <p>{{ certificate.name }}</p>
+      <p>{{ certificate.certifying_institution.name }}</p>
+    </li>
     {% endfor %}
   </ul>
-
-  <footer>
-    <h3>Institutos</h3>
-    <ul>
-      {% for x in profile.certifying_institutions.all %}
-      <li>{{ x.name }} ({{ x.url }})</li>
-      {% endfor %}
-    </ul>
-  </footer>
 </body>
 
 </html>
