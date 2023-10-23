@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
@@ -8,33 +8,33 @@
 </head>
 
 <body>
-  <h2>{{ profile.name }}</h2>
-  <div>GitHub: {{ profile.github }}</div>
+  <h1>{{ profile.name }}</h1>
+  <p>GitHub: {{ profile.github }}</p>
   <p>LinkedIn: {{ profile.linkedin }}</a></p>
-  <div>Bio: {{ profile.bio }}</div>
+  <p>Bio: {{ profile.bio }}</p>
 
-  <h3>Projetos</h3>
-
-  {% for x in profile.projects.all %}
-  <div>{{ x.name }}</div>
-  <div>Description: {{ x.description }}</div>
-  <div>Github URL: {{ x.github_url }}</div>
-  <div>Keyword: {{ x.keyword }}</div>
-  <div>Key Skill: {{ x.key_skill }}</div>
-  {% endfor %}
-
-
-  <h3>Certificados</h3>
+  <h2>Projetos</h2>
   <ul>
-    {% for x in profile.certificates.all %}
-    <li>{{ x.name }} ({{ x.certifying_institution.name }})</li>
+    {% for project in profile.projects.all %}
+    <p>{{ project.name }}</p>
+    <p>Description: {{ project.description }}</p>
+    <p>Github URL: {{ project.github_url }}</p>
+    <p>Keyword: {{ project.keyword }}</p>
+    <p>Key Skill: {{ project.key_skill }}</p>
     {% endfor %}
   </ul>
 
-  <h3>Institutos</h3>
+  <h2>Certificados</h2>
   <ul>
-    {% for x in profile.certifying_institutions.all %}
-    <li>{{ x.name }} ({{ x.url }})</li>
+    {% for certificate in profile.certificates.all %}
+    <li>{{ certificate.name }} ({{ certificate.certifying_institution.name }})</li>
+    {% endfor %}
+  </ul>
+
+  <h2>Instituições Certificadoras</h2>
+  <ul>
+    {% for institution in profile.certifying_institutions.all %}
+    <li>{{ institution.name }} ({{ institution.url }})</li>
     {% endfor %}
   </ul>
 </body>
