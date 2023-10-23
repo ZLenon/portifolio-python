@@ -39,7 +39,7 @@ class CertifyingInstitution(dj_model):
 
 class Certificate(dj_model):
     name = models.CharField(max_length=60, validators=[mlgv(limit_value=90)])
-    profiles = models.ManyToManyField("Profile", related_name="certificates")
+    profiles = models.ManyToManyField(Profile, related_name="certificates")
     timestamp = models.DateTimeField(auto_now_add=True)
     certifying_institution = models.ForeignKey(
         CertifyingInstitution,
