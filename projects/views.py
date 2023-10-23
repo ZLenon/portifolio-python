@@ -37,7 +37,11 @@ class ProfileViewSet(set_view):
             kwargs.get("pk")
             # crie uma variável para guardar esse perfil
             profile = self.get_object()
-            context = {"profile": profile}
+            context = {
+                "profile": profile,
+                "certificates": profile.certificates.all(),
+                "projects": profile.projects.all(),
+            }
             return render(
                 # passe os parâmetros necessários para o template:
                 request,
