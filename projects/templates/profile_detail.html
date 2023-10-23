@@ -1,42 +1,50 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
+
 <head>
-  <title>Profile</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculo</title>
 </head>
+
 <body>
-  <h2>{{ profile.name }}</h2>
-  <a href="{{ profile.github }}">Github</a>
-  <a href="{{ profile.linkedin }}">Linkedin</a>
-  <p>{{ profile.bio }}</p>
-  <h3>Projetos</h3>
-  <ul>
-    {% for project in profile.projects.all %}
-    <li>
-      {{ project.name }}
-      {{ project.description }}
-      <a href="{{ project.github_url }}">Github</a>
-      {{ project.keyword }}
-      {{ project.key_skill }}
-    </li>
-    {% endfor %}
-  </ul>
-  <h3>Certificações</h3>
-  <ul>
-    {% for certificate in profile.certificates.all %}
-    <li>
-      {{ certificate.name }}
-      {{ certificate.certifying_institution.name}}
-    </li>
-    {% endfor %}
-  </ul>
-  <h3>Instituições</h3>
-  <ul>
-    {% for institution in profile.certifying_institutions.all %}
-    <li>
-      {{ institution.name }}
-      {{ institution.url }}
-    </li>
-    {% endfor %}
-  </ul>
+  <header>
+    <h2>{{ profile.name }}</h2>
+    <div>GitHub: {{ profile.github }}</div>
+    <div>LinkedIn: {{ profile.linkedin }}</div>
+    <div>Bio: {{ profile.bio }}</div>
+  </header>
+
+  <aside>
+    <h3>Projetos</h3>
+    <ul>
+      {% for project in profile.projects.all %}
+      <li>{{ project.name }}</li>
+      <li>Description: {{ project.description }}</li>
+      <li>Github URL: {{ project.github_url }}</li>
+      <li>Keyword: {{ project.keyword }}</li>
+      <li>Key Skill: {{ project.key_skill }}</li>
+      {% endfor %}
+    </ul>
+  </aside>
+
+  <nav>
+    <h3>Certificados</h3>
+    <ul>
+      {% for certificate in profile.certificates.all %}
+      <li>{{ certificate.name }} ({{ certificate.certifying_institution.name }})</li>
+      {% endfor %}
+    </ul>
+  </nav>
+
+  <footer>
+    <h3>Instituições Certificadoras</h3>
+    <ul>
+      {% for institution in profile.certifying_institutions.all %}
+      <li>{{ institution.name }} ({{ institution.url }})</li>
+      {% endfor %}
+    </ul>
+  </footer>
 </body>
+
 </html>
