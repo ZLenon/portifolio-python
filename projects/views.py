@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from projects.models import (
@@ -34,9 +34,10 @@ class ProfileViewSet(set_view):
             return super().retrieve(request, *args, **kwargs)
         else:
             # busque o id do perfil
-            kwargs.get("pk")
+            path = request.META["PATH_INFO"]
+            user_id = int(path.split("/")[2])
             # crie uma variável para guardar esse perfil
-            profile = self.get_object()
+            profile = get_object_or_404(Profile, id=user_id)
             context = {
                 "profile": profile,
                 "certificates": profile.certificates.all(),
@@ -45,9 +46,9 @@ class ProfileViewSet(set_view):
             return render(
                 # passe os parâmetros necessários para o template:
                 request,
+                # a requisição, o caminho do template
                 "profile_detail.html",
                 context
-                # a requisição, o caminho do template
                 # e um dict com dados para o template
             )
 
